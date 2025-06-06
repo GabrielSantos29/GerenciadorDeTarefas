@@ -1,4 +1,4 @@
-﻿using ApiListaDeTerefas.Data;
+﻿using ApiListaDeTarefas.Data;
 using System;
 
 namespace TesteConexaoConsole // Você pode ajustar o namespace

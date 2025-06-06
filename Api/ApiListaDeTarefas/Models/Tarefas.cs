@@ -1,4 +1,4 @@
-﻿namespace ApiListaDeTerefas.Models
+﻿namespace ApiListaDeTarefas.Models
 {
     public class Tarefas
     {

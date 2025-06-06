@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 
-namespace ApiListaDeTerefas.Data
+namespace ApiListaDeTarefas.Data
 {
     public class DataBase
     {

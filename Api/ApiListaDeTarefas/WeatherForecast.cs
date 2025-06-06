@@ -1,4 +1,4 @@
-namespace ApiListaDeTerefas
+namespace ApiListaDeTarefas
 {
     public class WeatherForecast
     {
