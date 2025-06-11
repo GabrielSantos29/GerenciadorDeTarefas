@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using ApiListaDeTarefas.Models;
 
 namespace ApiListaDeTarefas.Data
 {
@@ -8,7 +9,7 @@ namespace ApiListaDeTarefas.Data
 
         public void Teste()
         {
-            using(MySqlConnection conn = new MySqlConnection(ConnectionString))
+            using (MySqlConnection conn = new MySqlConnection(ConnectionString))
             {
                 try
                 {
@@ -19,9 +20,66 @@ namespace ApiListaDeTarefas.Data
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Erro: "+ex.ToString());
+                    Console.WriteLine("Erro: " + ex.ToString());
                 }
             }
+        }
+        // Método para buscar todas as tarefas obs: retorna uma lista com as tarefas.
+        public List<Tarefa> GetTarefas()
+        {
+            List<Tarefa> tarefas = new List<Tarefa>();
+            using (MySqlConnection conn = new MySqlConnection(ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    string Query = "SELECT Id, Nome, Concluido FROM Tarefas;";
+                    using (MySqlCommand cmd = new MySqlCommand(Query, conn))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Tarefa tarefa = new Tarefa
+                                {
+                                    Id = reader.GetInt32("Id"),
+                                    Nome = reader.GetString("Nome"),
+                                    Concluida = reader.GetBoolean("Concluido")
+                                };
+                                tarefas.Add(tarefa);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro: " + ex.ToString());
+                }
+            }
+
+            return tarefas;
+        }
+        // Método POST (inserir)
+        public void AddTarefa()
+        {
+            using (MySqlConnection conn = new MySqlConnection(ConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    string Query = "INSERT INTO Tarefas (id, Nome, Concluido) VALUES (@Nome,@concluido)";
+                    using (SqlCommand cmd = new MySqlCommand())
+                    {
+                        cmd.Parameters.AddWithValue("@Nome", tarefa.Nome);
+                        cmd.Parameters.AddWithValue("@Concluido", tarefa.Concluida);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erro: " + ex.ToString());
+                }
+            } 
         }
     }
 }

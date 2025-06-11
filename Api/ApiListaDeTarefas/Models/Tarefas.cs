@@ -1,9 +1,9 @@
 ﻿namespace ApiListaDeTarefas.Models
 {
-    public class Tarefas
+    public class Tarefa
     {
-        int Id { get; set; }
-        string Nome { get; set; }
-        bool Concluida { get; set; } = false;
+        public int Id { get; set; }
+        public string Nome { get; set; } = string.Empty;
+        public bool Concluida { get; set; } = false;
     }
 }
