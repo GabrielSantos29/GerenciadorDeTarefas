@@ -22,6 +22,14 @@ namespace ApiListaDeTarefas.Controllers
             var tarefas = _dataBase.GetTarefas();
             return Ok(tarefas);
         }
-        //
+        //método POST
+        [HttpPost]
+        public ActionResult<List<Tarefa>> Post([FromBody] Tarefa novaTarefa)
+        {
+            int id = _dataBase.AddTarefa(novaTarefa);
+            novaTarefa.Id = id;
+            //return CreatedAtAction(nameof(GetById), new { id = novaTarefa.Id }, novaTarefa);
+            return Ok(novaTarefa);
+        }
     }
 }

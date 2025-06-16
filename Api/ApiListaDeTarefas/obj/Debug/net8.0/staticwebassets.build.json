@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "uP8IzOUpv0FoLUovs5RErUGhH5/W7wEsJmcTupVM0Bw=",
-  "Source": "ApiListaDeTerefas",
-  "BasePath": "_content/ApiListaDeTerefas",
+  "Hash": "FpqO3shGhsUbx5v5At7s2NHU4KkdvzDHxIOvrRMTXKw=",
+  "Source": "ApiListaDeTarefas",
+  "BasePath": "_content/ApiListaDeTarefas",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

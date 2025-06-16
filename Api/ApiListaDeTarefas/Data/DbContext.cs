@@ -60,19 +60,20 @@ namespace ApiListaDeTarefas.Data
             return tarefas;
         }
         // Método POST (inserir)
-        public void AddTarefa()
+        public int AddTarefa(Tarefa tarefa)
         {
+            int idGerado = 0;
             using (MySqlConnection conn = new MySqlConnection(ConnectionString))
             {
                 try
                 {
                     conn.Open();
-                    string Query = "INSERT INTO Tarefas (id, Nome, Concluido) VALUES (@Nome,@concluido)";
-                    using (SqlCommand cmd = new MySqlCommand())
+                    string Query = "INSERT INTO Tarefas (Nome, Concluido) VALUES (@Nome,@Concluido);SELECT LAST_INSERT_ID();";
+                    using (MySqlCommand cmd = new MySqlCommand(Query, conn))
                     {
                         cmd.Parameters.AddWithValue("@Nome", tarefa.Nome);
                         cmd.Parameters.AddWithValue("@Concluido", tarefa.Concluida);
-                        cmd.ExecuteNonQuery();
+                        idGerado = Convert.ToInt32(cmd.ExecuteScalar());
                     }
                 }
                 catch (Exception ex)
@@ -80,6 +81,7 @@ namespace ApiListaDeTarefas.Data
                     Console.WriteLine("Erro: " + ex.ToString());
                 }
             } 
+            return idGerado;
         }
     }
 }
