@@ -1851,11 +1851,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gscar\\OneDrive\\Desktop\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListaDeTarefas\\ApiListaDeTarefas.csproj",
+      "projectUniqueName": "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListaDeTarefas\\ApiListaDeTarefas.csproj",
       "projectName": "ApiListaDeTarefas",
-      "projectPath": "C:\\Users\\gscar\\OneDrive\\Desktop\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListaDeTarefas\\ApiListaDeTarefas.csproj",
+      "projectPath": "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListaDeTarefas\\ApiListaDeTarefas.csproj",
       "packagesPath": "C:\\Users\\gscar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gscar\\OneDrive\\Desktop\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListaDeTarefas\\obj\\",
+      "outputPath": "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListaDeTarefas\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

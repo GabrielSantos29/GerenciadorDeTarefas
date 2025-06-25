@@ -22,6 +22,17 @@ namespace ApiListaDeTarefas.Controllers
             var tarefas = _dataBase.GetTarefas();
             return Ok(tarefas);
         }
+        //método Get(id)
+        [HttpGet("{id}")]
+        public ActionResult<Tarefa> GetTarefaId(int id)
+        {
+            var tarefa = _dataBase.GetTarefaId(id);
+            if (tarefa == null)
+            {
+                return NotFound();// 404 se não existir
+            }
+            return Ok(tarefa);// 200 com o objeto
+        }
         //método POST
         [HttpPost]
         public ActionResult<List<Tarefa>> Post([FromBody] Tarefa novaTarefa)
@@ -30,6 +41,16 @@ namespace ApiListaDeTarefas.Controllers
             novaTarefa.Id = id;
             //return CreatedAtAction(nameof(GetById), new { id = novaTarefa.Id }, novaTarefa);
             return Ok(novaTarefa);
+        }
+        //método PUT
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Tarefa tarefaAtualizada)
+        {
+            if (id != tarefaAtualizada.Id)
+                return BadRequest("ID da URL diferente do ID do corpo.");
+            bool sucesso = _dataBase.AtualizarTarefa(tarefaAtualizada);
+            return sucesso ? NoContent() : NotFound();
+
         }
     }
 }
