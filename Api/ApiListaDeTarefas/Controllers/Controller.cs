@@ -52,5 +52,19 @@ namespace ApiListaDeTarefas.Controllers
             return sucesso ? NoContent() : NotFound();
 
         }
+        //método Delete
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            bool Excluiu = _dataBase.DeletarTarefa(id);
+            if (Excluiu)
+            {
+                return NoContent();// 204 – excluído com sucesso
+            }
+            else
+            {
+                return NotFound();//404 – não encontrou para deletar
+            }
+        }
     }
 }

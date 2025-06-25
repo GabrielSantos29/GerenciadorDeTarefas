@@ -146,5 +146,30 @@ namespace ApiListaDeTarefas.Data
             }
         }
         //Método DELETE
+        public bool DeletarTarefa(int id)
+        {
+            try
+            {
+                using var conn = new MySqlConnection(ConnectionString);
+                conn.Open();
+                const string sql = @"
+                    DELETE FROM Tarefas
+                        WHERE Id = @Id;
+                ";
+
+                using var cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", id);
+
+                // Executa o DELETE e retorna quantas linhas foram afetadas
+                int linhasAfetadas = cmd.ExecuteNonQuery();
+                // Se afetou pelo menos uma linha, a atualização foi bem-sucedida
+                return linhasAfetadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro: " + ex.ToString());
+                return false;
+            }
+        }
     }
 }
