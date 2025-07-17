@@ -2,9 +2,9 @@
     const botao = document.getElementById('btnMenu');
     const menu = document.getElementById('Menu');
 
-    botao.addEventListener('click', () => {
-        menu.classList.toggle('visivel');
-    });
+    botao.addEventListener('click', ()=>{
+        menu.classList.toggle("visivel")}
+    );
 
     const box = document.getElementById("Box");
 
@@ -21,10 +21,41 @@
                 div.innerHTML = `
                     <p><strong>${tarefa.nome}</strong></p>
                     <p>Status: ${tarefa.concluida ? "✅ Concluída" : "🕓 Pendente"}</p>
+                    <p>Feito <input type="checkbox" ${tarefa.concluida ? "checked" : ""} data-id="${tarefa.id}"></p>
                     <hr>
                 `;
                 box.appendChild(div);
             });
+
+            // Depois de carregar os elementos
+            document.querySelectorAll(".tarefa input[type='checkbox']").forEach(checkbox => {checkbox.addEventListener("change", async () => {
+                const id = checkbox.getAttribute("data-id");
+                const nome = checkbox.closest(".tarefa").querySelector("strong").innerText;
+                const concluida = checkbox.checked;
+
+                const tarefaAtualizada = {
+                    id: parseInt(id),
+                    nome: nome,
+                    concluida: concluida
+                };
+
+                try {
+                    await fetch(`http://localhost:5006/api/tarefas/${id}`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(tarefaAtualizada)
+                    });
+                    carregarTarefas();
+                    console.log("Tarefa atualizada com sucesso.");
+                } catch (erro) {
+                    console.error("Erro ao atualizar tarefa:", erro);
+                }
+                });
+
+            });
+
 
         } catch (erro) {
             console.error("Erro ao carregar tarefas:", erro);
@@ -79,4 +110,10 @@
             console.error("Erro ao adicionar tarefa:", erro);
         }
     });
+    // Remover tarefa
+    const btnRemover = document.getElementById("btnRemover")
 
+
+    
+
+    
