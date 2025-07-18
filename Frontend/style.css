@@ -139,6 +139,15 @@ p{
 
     transition: 0.2s ease-in-out; /* animação suave */
 }
+.btn-remover-tarefa {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
 /*Elemento tarefa dentro do container*/
 .tarefa {
     background-color: #f5f5f5;

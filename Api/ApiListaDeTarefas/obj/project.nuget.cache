@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EsCbUMAqfOo=",
+  "dgSpecHash": "MpepIDxBUV8=",
   "success": true,
-  "projectFilePath": "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListaDeTarefas\\ApiListaDeTarefas.csproj",
+  "projectFilePath": "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListaDetarefas\\ApiListaDeTarefas.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gscar\\.nuget\\packages\\bouncycastle.cryptography\\2.5.1\\bouncycastle.cryptography.2.5.1.nupkg.sha512",
     "C:\\Users\\gscar\\.nuget\\packages\\google.protobuf\\3.30.0\\google.protobuf.3.30.0.nupkg.sha512",

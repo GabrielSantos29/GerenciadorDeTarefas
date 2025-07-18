@@ -7,6 +7,7 @@
     );
 
     const box = document.getElementById("Box");
+    let modoRemocao = false;
 
     async function carregarTarefas() {
         try {
@@ -18,12 +19,18 @@
             tarefas.forEach(tarefa => {
                 const div = document.createElement("div");
                 div.className = "tarefa";
-                div.innerHTML = `
+                let conteudo =  `
                     <p><strong>${tarefa.nome}</strong></p>
                     <p>Status: ${tarefa.concluida ? "✅ Concluída" : "🕓 Pendente"}</p>
                     <p>Feito <input type="checkbox" ${tarefa.concluida ? "checked" : ""} data-id="${tarefa.id}"></p>
-                    <hr>
                 `;
+
+                if(modoRemocao){
+                    conteudo += `<button class="btn-remover-tarefa" data-id="${tarefa.id}">❌ Remover</button>`;
+                }
+                conteudo += `<hr>`;
+
+                div.innerHTML = conteudo;
                 box.appendChild(div);
             });
 
@@ -111,7 +118,13 @@
         }
     });
     // Remover tarefa
-    const btnRemover = document.getElementById("btnRemover")
+    const btnRemover = document.getElementById("btnRemover");
+
+    btnRemover.addEventListener("click",()=>{
+        menu.classList.toggle("visivel")
+        modoRemocao = !modoRemocao;
+        carregarTarefas();
+    });
 
 
     
