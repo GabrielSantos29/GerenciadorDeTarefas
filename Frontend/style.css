@@ -208,12 +208,4 @@ p{
 .oculto {
     display: none;
 }
-/*Caixa para marcar intens que serão excluídos*/
-#BoxRemocao{
-    width: 100%;
-    height: 400px;
-    overflow-y: auto; /* ativa rolagem vertical */
-    padding-right: 10px; /* evita que o conteúdo encoste na borda */
 
-    border-radius: 0px 0px 10px 10px;
-}

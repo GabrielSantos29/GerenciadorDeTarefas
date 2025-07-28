@@ -7,8 +7,9 @@
     );
 
     const box = document.getElementById("Box");
+// Modulos***************************************************************************************
     let modoRemocao = false;
-
+//***********************************************************************************************
     async function carregarTarefas() {
         try {
             const resposta = await fetch("http://localhost:5006/api/tarefas");
@@ -119,6 +120,8 @@
     });
     // Remover tarefa
     const btnRemover = document.getElementById("btnRemover");
+    const btnConfirmarRemocao = document.getElementById("btnConfirmarRemocao");
+    const btnCancelarRemocao = document.getElementById("btnCancelarRemocao");
 
     btnRemover.addEventListener("click",()=>{
         menu.classList.toggle("visivel")
@@ -126,6 +129,23 @@
         carregarTarefas();
     });
 
+    if(modoRemocao){
+        const btnRemoverTarefa = document.getElementById("btn-remover-tarefa");
+
+        Array.from(btnRemoverTarefa)forEach();//continuar daqui ...
+    }
+    //**************************************************************************************
+    btnRemoverTarefa.addEventListener("click",()=>{
+
+    });
+
+    btnConfirmarRemocao.addEventListener("click",()=>{
+
+    });
+
+    btnCancelarRemocao.addEventListener("click",()=>{
+
+    });
 
     
 
