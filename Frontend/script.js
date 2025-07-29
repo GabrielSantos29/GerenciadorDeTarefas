@@ -122,23 +122,35 @@
     const btnRemover = document.getElementById("btnRemover");
     const btnConfirmarRemocao = document.getElementById("btnConfirmarRemocao");
     const btnCancelarRemocao = document.getElementById("btnCancelarRemocao");
+    const modulo = document.getElementById("formRemover")//adicinar formulario de confirmação de remoção 
 
     btnRemover.addEventListener("click",()=>{
-        menu.classList.toggle("visivel")
+        menu.classList.toggle("visivel");
         modoRemocao = !modoRemocao;
         carregarTarefas();
     });
+// Se o modoRemocao estiver ativo, adicionar os listeners de remoção
+    if (modoRemocao) {
+        const botoesRemover = document.getElementsByClassName("btn-remover-tarefa");
 
-    if(modoRemocao){
-        const btnRemoverTarefa = document.getElementById("btn-remover-tarefa");
+        Array.from(botoesRemover).forEach(botao => {
+            botao.addEventListener("click", async () => {
+                const id = botao.getAttribute("data-id");
+                const confirmar = confirm("Deseja realmente remover esta tarefa?");
+                if (!confirmar) return;
 
-        Array.from(btnRemoverTarefa)forEach();//continuar daqui ...
+                try {
+                    await fetch(`http://localhost:5006/api/tarefas/${id}`, {
+                        method: "DELETE"
+                    });
+                    carregarTarefas();
+                } catch (erro) {
+                    console.error("Erro ao remover tarefa:", erro);
+                }
+            });
+        });
     }
     //**************************************************************************************
-    btnRemoverTarefa.addEventListener("click",()=>{
-
-    });
-
     btnConfirmarRemocao.addEventListener("click",()=>{
 
     });
