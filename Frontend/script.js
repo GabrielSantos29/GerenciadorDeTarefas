@@ -9,6 +9,7 @@
     const box = document.getElementById("Box");
 // Modulos***************************************************************************************
     let modoRemocao = false;
+    let modoEdicao = false;
 //***********************************************************************************************
     async function carregarTarefas() {
         try {
@@ -25,9 +26,34 @@
                     <p>Status: ${tarefa.concluida ? "✅ Concluída" : "🕓 Pendente"}</p>
                     <p>Feito <input type="checkbox" ${tarefa.concluida ? "checked" : ""} data-id="${tarefa.id}"></p>
                 `;
-
                 if(modoRemocao){
                     conteudo += `<button class="btn-remover-tarefa" data-id="${tarefa.id}">❌ Remover</button>`;
+                }
+
+// Se o modoRemocao estiver ativo, adicionar os listeners de remoção
+                if(modoRemocao){
+                    const botoesRemover = document.getElementsByClassName("btn-remover-tarefa");
+
+                    Array.from(botoesRemover).forEach(botao => {
+                        botao.addEventListener("click", async () => {
+                            const id = botao.getAttribute("data-id");
+                            const confirmar = confirm("Deseja realmente remover esta tarefa?");
+                            if (!confirmar) return;
+
+                            try {
+                                await fetch(`http://localhost:5006/api/tarefas/${id}`, {
+                                    method: "DELETE"
+                                });
+                                carregarTarefas();
+                            } catch (erro) {
+                                console.error("Erro ao remover tarefa:", erro);
+                            }
+                        });
+                    });
+                }
+// Se o modoEdição estiver ativo, adicionar os listeners de edição
+                if(modoEdicao){
+                    conteudo += `<button class="btn-editar-tarefa" data-id="${tarefa.id}">Editar</button>`;
                 }
                 conteudo += `<hr>`;
 
@@ -35,7 +61,7 @@
                 box.appendChild(div);
             });
 
-            // Depois de carregar os elementos
+// Depois de carregar os elementos
             document.querySelectorAll(".tarefa input[type='checkbox']").forEach(checkbox => {checkbox.addEventListener("change", async () => {
                 const id = checkbox.getAttribute("data-id");
                 const nome = checkbox.closest(".tarefa").querySelector("strong").innerText;
@@ -118,46 +144,27 @@
             console.error("Erro ao adicionar tarefa:", erro);
         }
     });
-    // Remover tarefa
+// Remover tarefa ********************************************************************************
+    //botoes
     const btnRemover = document.getElementById("btnRemover");
     const btnConfirmarRemocao = document.getElementById("btnConfirmarRemocao");
     const btnCancelarRemocao = document.getElementById("btnCancelarRemocao");
     const modulo = document.getElementById("formRemover")//adicinar formulario de confirmação de remoção 
 
+    //funções
     btnRemover.addEventListener("click",()=>{
         menu.classList.toggle("visivel");
         modoRemocao = !modoRemocao;
         carregarTarefas();
-    });
-// Se o modoRemocao estiver ativo, adicionar os listeners de remoção
-    if (modoRemocao) {
-        const botoesRemover = document.getElementsByClassName("btn-remover-tarefa");
+    });    
+//Editar tarefas *********************************************************************************
+    const btnEditar = document.getElementById("btnEditar");
 
-        Array.from(botoesRemover).forEach(botao => {
-            botao.addEventListener("click", async () => {
-                const id = botao.getAttribute("data-id");
-                const confirmar = confirm("Deseja realmente remover esta tarefa?");
-                if (!confirmar) return;
-
-                try {
-                    await fetch(`http://localhost:5006/api/tarefas/${id}`, {
-                        method: "DELETE"
-                    });
-                    carregarTarefas();
-                } catch (erro) {
-                    console.error("Erro ao remover tarefa:", erro);
-                }
-            });
-        });
-    }
-    //**************************************************************************************
-    btnConfirmarRemocao.addEventListener("click",()=>{
-
-    });
-
-    btnCancelarRemocao.addEventListener("click",()=>{
-
-    });
+    btnEditar.addEventListener("click", ()=>{
+        menu.classList.toggle("visivel");
+        modoEdicao = !modoEdicao;
+        carregarTarefas();
+    })
 
     
 

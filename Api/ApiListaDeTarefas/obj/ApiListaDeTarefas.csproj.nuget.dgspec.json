@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListadeTarefas\\ApiListaDeTarefas.csproj": {}
+    "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListaDetarefas\\ApiListaDeTarefas.csproj": {}
   },
   "projects": {
-    "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListadeTarefas\\ApiListaDeTarefas.csproj": {
+    "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListaDetarefas\\ApiListaDeTarefas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListadeTarefas\\ApiListaDeTarefas.csproj",
+        "projectUniqueName": "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListaDetarefas\\ApiListaDeTarefas.csproj",
         "projectName": "ApiListaDeTarefas",
-        "projectPath": "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListadeTarefas\\ApiListaDeTarefas.csproj",
+        "projectPath": "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListaDetarefas\\ApiListaDeTarefas.csproj",
         "packagesPath": "C:\\Users\\gscar\\.nuget\\packages\\",
-        "outputPath": "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListadeTarefas\\obj\\",
+        "outputPath": "C:\\DevProjetos\\GerenciadorDeTarefas\\Api\\ApiListaDetarefas\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

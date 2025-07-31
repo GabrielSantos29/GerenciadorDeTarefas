@@ -147,6 +147,14 @@ p{
     cursor: pointer;
     border-radius: 4px;
 }
+.btn-editar-tarefa{
+    background-color: #ff9500;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+}
 
 /*Elemento tarefa dentro do container*/
 .tarefa {
