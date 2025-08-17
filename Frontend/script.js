@@ -94,6 +94,15 @@ async function carregarTarefas() {
             Array.from(botoesEdicao).forEach(botao =>{
                 botao.addEventListener("click", async () =>{
                     const id = botao.getAttribute("data-id");
+                    const btnConfirmarEdicao = document.getElementById("btnConfirmarEdicao");
+                    const btnCancelarEdicao = document.getElementById("btnCancelarEdicao");
+                    const modulo = document.getElementById("formEditar");
+                    const inputEditar = document.getElementById("inputEditarTarefa");
+
+                    modulo.classList.remove("oculto")
+                    inputEditar.value= "";
+                    inputEditar.focus();
+
                     
                 })
             })
@@ -154,9 +163,6 @@ btnConfirmar.addEventListener("click", async () => {
 // Remover tarefa ********************************************************************************
 //botoes
 const btnRemover = document.getElementById("btnRemover");
-const btnConfirmarRemocao = document.getElementById("btnConfirmarRemocao");
-const btnCancelarRemocao = document.getElementById("btnCancelarRemocao");
-const modulo = document.getElementById("formRemover")//adicinar formulario de confirmação deremoção 
 
 //funções
 btnRemover.addEventListener("click",()=>{
