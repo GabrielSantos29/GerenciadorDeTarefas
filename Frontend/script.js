@@ -21,7 +21,7 @@ async function carregarTarefas() {
             const div = document.createElement("div");
             div.className = "tarefa";
             let conteudo =  `
-                <p><strong>${tarefa.nome}</strong></p>
+                <p><strong id="tarefa-${tarefa.id}">${tarefa.nome}</strong></p>
                 <p>Status: ${tarefa.concluida ? "✅ Concluída" : "🕓 Pendente"}</p>
                 <p>Feito <input type="checkbox" ${tarefa.concluida ? "checked" : ""} data-id="${tarefa.id}"></p>
             `;
@@ -99,11 +99,36 @@ async function carregarTarefas() {
                     const modulo = document.getElementById("formEditar");
                     const inputEditar = document.getElementById("inputEditarTarefa");
 
+                    //abre o form
                     modulo.classList.remove("oculto")
-                    inputEditar.value= "";
+                    //preenche com o texto atual da tarefa
+                    const textoTarefa = document.getElementById(`tarefa-${id}`).innerText;
+                    inputEditar.value= textoTarefa;
                     inputEditar.focus();
 
-                    
+                    //confirmar a edição
+                    btnConfirmarEdicao.onclick = async()=>{
+                        const novoTexto = inputEditar.value.trim();
+                        if (!novoTexto) {
+                            alert("O texto da tarefa não pode ficar vazio!");
+                            return;
+                        }
+                        try{          
+                            await fetch (`http://localhost:5006/api/tarefas/${id}`,{
+                                method: "PUT",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    id: parseInt(id),
+                                    nome: novoTexto,
+                                })
+                            });
+                            modulo.classList.add("oculto");
+                            carregarTarefas();
+                        }catch(Erro){
+                            console.error("Erro ao editar tarefa:", erro);
+                            alert("Não foi possível editar a tarefa. Tente novamente.");
+                        }
+                    }
                 })
             })
         }
