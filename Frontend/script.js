@@ -129,6 +129,10 @@ async function carregarTarefas() {
                             alert("Não foi possível editar a tarefa. Tente novamente.");
                         }
                     }
+                    // cancelar edição
+                    btnCancelarEdicao.onclick = () => {
+                        modulo.classList.add("oculto");
+                    };
                 })
             })
         }
